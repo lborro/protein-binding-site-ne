@@ -1,0 +1,300 @@
+residue        ARG
+HYDROPHOBIC    29 4ww8.pdb B 0255
+CHARGE_ATTR    47 2ptz.pdb A 0372
+CHARGE_REPU    46 3std.pdb B 0107
+HB_MM          8  3fvk.pdb B 0697
+HB_MWM         4  1h4w.pdb A 0224
+HB_MWWM        5  3bxe.pdb B 0322
+HB_MS          7  3evd.pdb A 0264
+HB_MWS         8  4lhm.pdb A 0271
+HB_MWWS        8  1gah.pdb A 0131
+HB_SS          4  1fh7.pdb A 0221
+HB_SWS         4  1ofz.pdb A 0131
+HB_SWWS        6  3f5j.pdb A 0178
+AROMATIC       6  1o86.pdb A 0468
+SS_BOND        0
+residue        ALA
+HYDROPHOBIC    20 2qpq.pdb B 0026
+CHARGE_ATTR    0
+CHARGE_REPU    0
+HB_MM          8  1b8n.pdb A 0267
+HB_MWM         5  3tcg.pdb F 0216
+HB_MWWM        6  2bt9.pdb B 0007
+HB_MS          4  3ip6.pdb A 0313
+HB_MWS         5  1ecq.pdb C 0364
+HB_MWWS        5  1i2s.pdb B 0237
+HB_SS          0
+HB_SWS         0
+HB_SWWS        0
+AROMATIC       0
+SS_BOND        0
+residue        PRO
+HYDROPHOBIC    32 3oil.pdb A 0201
+CHARGE_ATTR    0
+CHARGE_REPU    0
+HB_MM          6  1b8n.pdb A 0099
+HB_MWM         4  1jt1.pdb A 0237
+HB_MWWM        4  3hp9.pdb A 0028
+HB_MS          3  1b2h.pdb A 0108
+HB_MWS         4  2qft.pdb A 0312
+HB_MWWS        5  1xr9.pdb C 0004
+HB_SS          0
+HB_SWS         0
+HB_SWWS        0
+AROMATIC       0
+SS_BOND        0
+residue        CYS
+HYDROPHOBIC    17 4z2b.pdb A 0530
+CHARGE_ATTR    0
+CHARGE_REPU    0
+HB_MM          8  1h1s.pdb C 0118
+HB_MWM         4  1c5s.pdb A 0220
+HB_MWWM        5  3ozt.pdb A 0191
+HB_MS          4  1xt8.pdb A 0401
+HB_MWS         5  2bz6.pdb L 0102
+HB_MWWS        5  2w47.pdb A 0030
+HB_SS          0
+HB_SWS         0
+HB_SWWS        0
+AROMATIC       0
+SS_BOND        1  1a4w.pdb L 0001
+residue        ASN
+HYDROPHOBIC    21 2nn1.pdb A 0244
+CHARGE_ATTR    0
+CHARGE_REPU    0
+HB_MM          8  4qf7.pdb A 0109
+HB_MWM         5  1j16.pdb A 0224
+HB_MWWM        5  2jkp.pdb A 0403
+HB_MS          6  1h5v.pdb A 0169
+HB_MWS         6  1m9n.pdb A 0392
+HB_MWWS        7  1lrh.pdb A 0035
+HB_SS          4  1flr.pdb H 0035
+HB_SWS         5  1jet.pdb A 0038
+HB_SWWS        7  3g2z.pdb A 0132
+AROMATIC       0
+SS_BOND        0
+residue        VAL
+HYDROPHOBIC    25 3gy3.pdb A 0227
+CHARGE_ATTR    0
+CHARGE_REPU    0
+HB_MM          8  1ecq.pdb B 0113
+HB_MWM         4  1g98.pdb A 0097
+HB_MWWM        6  2bt9.pdb B 0050
+HB_MS          3  1f8b.pdb A 0349
+HB_MWS         4  2f2h.pdb A 0470
+HB_MWWS        7  1b2h.pdb A 0160
+HB_SS          0
+HB_SWS         0
+HB_SWWS        0
+AROMATIC       0
+SS_BOND        0
+residue        ILE
+HYDROPHOBIC    26 4av5.pdb C 0011
+CHARGE_ATTR    0
+CHARGE_REPU    0
+HB_MM          8  1gj4.pdb H 0242
+HB_MWM         5  2q8z.pdb A 0266
+HB_MWWM        6  3sk2.pdb B 0098
+HB_MS          5  4xmr.pdb B 0301
+HB_MWS         4  1c88.pdb A 0261
+HB_MWWS        6  4aji.pdb C 0076
+HB_SS          0
+HB_SWS         0
+HB_SWWS        0
+AROMATIC       0
+SS_BOND        0
+residue        TRP
+HYDROPHOBIC    43 2wbg.pdb A 0082
+CHARGE_ATTR    0
+CHARGE_REPU    0
+HB_MM          8  4r0a.pdb A 0786
+HB_MWM         4  1g45.pdb A 0097
+HB_MWWM        5  1ur9.pdb B 0250
+HB_MS          4  1v0k.pdb A 0177
+HB_MWS         5  1nq7.pdb A 0239
+HB_MWWS        6  2yln.pdb A 0135
+HB_SS          2  1ez9.pdb A 0230
+HB_SWS         2  1e6q.pdb M 0182
+HB_SWWS        3  3wq6.pdb A 0205
+AROMATIC       6  1b05.pdb A 0332
+SS_BOND        0
+residue        ASP
+HYDROPHOBIC    19 2xj7.pdb B 0123
+CHARGE_ATTR    50 1k9s.pdb B 0122
+CHARGE_REPU    41 2ves.pdb B 0161
+HB_MM          8  1xgi.pdb B 0217
+HB_MWM         4  1x8t.pdb A 0165
+HB_MWWM        4  1ro6.pdb B 0321
+HB_MS          8  1x9d.pdb A 0272
+HB_MWS         7  1qk4.pdb D 0189
+HB_MWWS        7  1b2h.pdb A 0505
+HB_SS          5  2p3i.pdb A 0142
+HB_SWS         5  1z4o.pdb A 0010
+HB_SWWS        5  3bex.pdb A 0125
+AROMATIC       0
+SS_BOND        0
+residue        HIS
+HYDROPHOBIC    27 4r5a.pdb A 0003
+CHARGE_ATTR    43 2ves.pdb A 0162
+CHARGE_REPU    50 5d1r.pdb A 0236
+HB_MM          8  2j78.pdb B 0057
+HB_MWM         4  3f78.pdb A 0264
+HB_MWWM        6  3p3t.pdb A 0056
+HB_MS          5  1ols.pdb A 0096
+HB_MWS         7  3pcc.pdb C 0138
+HB_MWWS        6  3c2u.pdb B 0248
+HB_SS          3  1ndw.pdb A 0258
+HB_SWS         5  4nj9.pdb H 0172
+HB_SWWS        4  1jev.pdb A 0117
+AROMATIC       6  1o86.pdb A 0513
+SS_BOND        0
+residue        GLU
+HYDROPHOBIC    23 3utu.pdb H 0018
+CHARGE_ATTR    46 3std.pdb A 0155
+CHARGE_REPU    46 1x9d.pdb A 0330
+HB_MM          8  3k1j.pdb B 0123
+HB_MWM         4  1i9n.pdb A 0214
+HB_MWWM        4  1g32.pdb B 0018
+HB_MS          6  1ndz.pdb A 0186
+HB_MWS         7  3ff3.pdb A 0001
+HB_MWWS        9  3ff3.pdb A 0001
+HB_SS          4  1z9g.pdb E 0187
+HB_SWS         4  1fzq.pdb A 0040
+HB_SWWS        5  3n86.pdb R 0055
+AROMATIC       0
+SS_BOND        0
+residue        LEU
+HYDROPHOBIC    27 2qtg.pdb A 0267
+CHARGE_ATTR    0
+CHARGE_REPU    0
+HB_MM          8  1m0q.pdb A 0229
+HB_MWM         5  2gsu.pdb A 0061
+HB_MWWM        5  1e5j.pdb A 0019
+HB_MS          4  1f2o.pdb A 0903
+HB_MWS         6  3b3s.pdb A 0304
+HB_MWWS        5  4io2.pdb B 0197
+HB_SS          0
+HB_SWS         0
+HB_SWWS        0
+AROMATIC       0
+SS_BOND        0
+residue        LYS
+HYDROPHOBIC    28 1b6h.pdb A 0492
+CHARGE_ATTR    24 1k9s.pdb A 0114
+CHARGE_REPU    21 2pqb.pdb A 0028
+HB_MM          8  1ecq.pdb B 0409
+HB_MWM         5  1c5t.pdb A 0224
+HB_MWWM        8  2a31.pdb A 0224
+HB_MS          5  1hee.pdb A 0128
+HB_MWS         7  2hh5.pdb B 0202
+HB_MWWS        7  3eko.pdb B 0041
+HB_SS          3  1i2s.pdb A 0073
+HB_SWS         4  1g98.pdb A 0056
+HB_SWWS        4  2fvd.pdb A 0129
+AROMATIC       5  1gah.pdb A 0108
+SS_BOND        0
+residue        MET
+HYDROPHOBIC    24 1yej.pdb H 0002
+CHARGE_ATTR    0
+CHARGE_REPU    0
+HB_MM          8  1rpj.pdb A 0235
+HB_MWM         4  2qrq.pdb A 0692
+HB_MWWM        5  3kr4.pdb B 0433
+HB_MS          4  1qq9.pdb A 0903
+HB_MWS         4  2ydw.pdb A 0121
+HB_MWWS        4  2hs1.pdb A 0036
+HB_SS          0
+HB_SWS         0
+HB_SWWS        0
+AROMATIC       0
+SS_BOND        0
+residue        PHE
+HYDROPHOBIC    39 1zvx.pdb A 0117
+CHARGE_ATTR    0
+CHARGE_REPU    0
+HB_MM          7  1a4w.pdb L 0007
+HB_MWM         4  2gkl.pdb A 0236
+HB_MWWM        5  2wvt.pdb B 0389
+HB_MS          4  2q7q.pdb B 0300
+HB_MWS         4  1c88.pdb A 0052
+HB_MWWS        6  3tzm.pdb A 0216
+HB_SS          0
+HB_SWS         0
+HB_SWWS        0
+AROMATIC       7  1yqj.pdb A 0327
+SS_BOND        0
+residue        SER
+HYDROPHOBIC    20 2uy3.pdb A 0059
+CHARGE_ATTR    0
+CHARGE_REPU    0
+HB_MM          8  2iuz.pdb B 0203
+HB_MWM         5  4aq4.pdb A 0167
+HB_MWWM        5  1n1t.pdb A 0291
+HB_MS          6  1a28.pdb A 0713
+HB_MWS         7  1e6s.pdb M 0423
+HB_MWWS        11 3hvh.pdb A 0115
+HB_SS          4  3q44.pdb A 0649
+HB_SWS         5  3g2y.pdb B 0070
+HB_SWWS        7  2ptz.pdb A 0040
+AROMATIC       0
+SS_BOND        0
+residue        THR
+HYDROPHOBIC    21 3moe.pdb A 0080
+CHARGE_ATTR    0
+CHARGE_REPU    0
+HB_MM          7  1ec9.pdb B 0064
+HB_MWM         5  2f2h.pdb D 0050
+HB_MWWM        5  2yln.pdb A 0058
+HB_MS          7  3kr4.pdb B 0458
+HB_MWS         7  2gsu.pdb A 0066
+HB_MWWS        7  2bt9.pdb A 0008
+HB_SS          3  1mfi.pdb A 0052
+HB_SWS         5  1ew9.pdb A 0155
+HB_SWWS        11 3mjl.pdb A 0246
+AROMATIC       0
+SS_BOND        0
+residue        GLY
+HYDROPHOBIC    19 1e2k.pdb B 0056
+CHARGE_ATTR    0
+CHARGE_REPU    0
+HB_MM          8  2rin.pdb A 0127
+HB_MWM         5  2y5g.pdb A 0069
+HB_MWWM        5  1w96.pdb B 0149
+HB_MS          4  3b3c.pdb A 0103
+HB_MWS         5  1jeu.pdb A 0415
+HB_MWWS        6  3mjl.pdb A 0245
+HB_SS          0
+HB_SWS         0
+HB_SWWS        0
+AROMATIC       0
+SS_BOND        0
+residue        GLN
+HYDROPHOBIC    24 4f0c.pdb A 0006
+CHARGE_ATTR    0
+CHARGE_REPU    0
+HB_MM          8  1z95.pdb A 0792
+HB_MWM         5  1l2s.pdb A 0147
+HB_MWWM        5  5f8x.pdb A 0224
+HB_MS          6  3fzy.pdb A 3437
+HB_MWS         5  1o7o.pdb B 1357
+HB_MWWS        8  3lq2.pdb B 0188
+HB_SS          4  1qk3.pdb B 0126
+HB_SWS         4  1b5j.pdb B 0002
+HB_SWWS        5  1ofz.pdb A 0291
+AROMATIC       0
+SS_BOND        0
+residue        TYR
+HYDROPHOBIC    36 1ogg.pdb B 0145
+CHARGE_ATTR    0
+CHARGE_REPU    0
+HB_MM          7  1elr.pdb A 0310
+HB_MWM         5  3gy2.pdb A 0184
+HB_MWWM        4  1b3l.pdb C 0508
+HB_MS          6  3dyo.pdb D 0196
+HB_MWS         5  1e5a.pdb A 0116
+HB_MWWS        7  2r0h.pdb A 0110
+HB_SS          4  4io6.pdb A 0067
+HB_SWS         5  1ydk.pdb B 0132
+HB_SWWS        7  3fee.pdb A 0542
+AROMATIC       5  1a7x.pdb A 0026
+SS_BOND        0

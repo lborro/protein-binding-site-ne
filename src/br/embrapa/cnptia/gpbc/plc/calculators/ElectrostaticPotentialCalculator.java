@@ -18,6 +18,7 @@ import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
+import org.apache.commons.io.FileUtils;
 import br.embrapa.cnptia.cbi.sdl.core.Chain;
 import br.embrapa.cnptia.cbi.sdl.core.FileConvert;
 import br.embrapa.cnptia.cbi.sdl.core.IAtom;
@@ -26,6 +27,7 @@ import br.embrapa.cnptia.cbi.sdl.core.PDBIO;
 import br.embrapa.cnptia.cbi.sdl.core.SSBond;
 import br.embrapa.cnptia.cbi.sdl.core.Structure;
 import br.embrapa.cnptia.cbi.sdl.utils.Utils;
+import br.embrapa.cnptia.gpbc.plc.config.Config;
 import br.embrapa.cnptia.gpbc.plc.structure.ProteinLigandComplex;
 
 public class ElectrostaticPotentialCalculator implements Callable<Object>{
@@ -99,7 +101,7 @@ public class ElectrostaticPotentialCalculator implements Callable<Object>{
 			String outDir) throws Exception 
 	{
 
-		this.plc = new ProteinLigandComplex(pdbFile, mol2File, 12.0);
+		this.plc = new ProteinLigandComplex(pdbFile, mol2File, Config.NANO_ENVIRONMENT_MAX_CUTOFF);
 		this.delphiPath = delphiPath;
 		this.reducePath = reducePath;
 		this.reduceDictionary = dictionaryPath;
@@ -127,7 +129,6 @@ public class ElectrostaticPotentialCalculator implements Callable<Object>{
 
 	@Override
 	public Object call() throws Exception {
-		// TODO Auto-generated method stub
 		File temporaryDir = new File(tmpDir + File.separator + "ep_" + System.nanoTime());		
 		if (!temporaryDir.mkdirs()){
 			throw new FileNotFoundException("Could not create temporary working directory: " + temporaryDir.getAbsolutePath());
@@ -153,9 +154,10 @@ public class ElectrostaticPotentialCalculator implements Callable<Object>{
 			bw.close();
 
 			File protonatedPdb = addHydrogens(cleanPdb, temporaryDir);
+			Structure protStructure = PDBIO.read(protonatedPdb, 0);
 			preparePDB(plc.getProtein().getStructure(), protonatedPdb);
 			generateAEP(protonatedPdb);
-			Map<IResidue, double[]> potMap = generateSEP(protonatedPdb);
+			Map<IResidue, double[]> potMap = generateSEP(protStructure, protonatedPdb);
 
 			List<IResidue> residues = new ArrayList<>(potMap.keySet());
 			Collections.sort(residues);
@@ -180,18 +182,17 @@ public class ElectrostaticPotentialCalculator implements Callable<Object>{
 		}catch(Exception e){
 			throw e;
 		}finally{
-			//	FileUtils.deleteQuietly(temporaryDir);	
+			FileUtils.deleteQuietly(temporaryDir);	
 		}
 		return null;
 	}
 
 	private void generateAEP(File protonatedPdb) throws Exception {
-		String pdbPath = protonatedPdb.getAbsolutePath();
-		String paramFileContent = CHARGE_POTENTIAL_PARAMS.replaceAll("%pdbCode", pdbPath)
+		String paramFileContent = CHARGE_POTENTIAL_PARAMS.replaceAll("%pdbCode",  protonatedPdb.getAbsolutePath())
 				.replaceAll("%chargeFile", new File(parseChargesFilePath).getAbsolutePath())
 				.replaceAll("%radiiFile", new File(parseRadiiFilePath).getAbsolutePath());
 
-		File paramFile = new File(pdbPath + ".fort10");   
+		File paramFile = new File(protonatedPdb.getAbsolutePath() + ".fort10");   
 
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter(paramFile));){
 			bw.write(paramFileContent);
@@ -203,7 +204,7 @@ public class ElectrostaticPotentialCalculator implements Callable<Object>{
 		int exitCode = -1;
 
 		try{
-			exitCode = Utils.callWithTimeout(cmdArray, 5L);
+			exitCode = Utils.callWithTimeout(cmdArray, Config.TIMEOUT);
 		}catch(Exception e){
 			throw e;
 		}
@@ -216,9 +217,8 @@ public class ElectrostaticPotentialCalculator implements Callable<Object>{
 
 	}
 
-	private Map<IResidue, double[]> generateSEP(File protonatedPdb) throws Exception {
-		String pdbPath = protonatedPdb.getAbsolutePath();
-		String paramFileContent = POTENTIAL_PARAMS.replaceAll("%pdbCode", pdbPath)
+	private Map<IResidue, double[]> generateSEP(Structure protStructure, File protonatedPdb) throws Exception {
+		String paramFileContent = POTENTIAL_PARAMS.replaceAll("%pdbCode", protonatedPdb.getAbsolutePath())
 				.replaceAll("%chargeFile", new File(parseChargesFilePath).getAbsolutePath())
 				.replaceAll("%radiiFile", new File(parseRadiiFilePath).getAbsolutePath());
 		File paramFile = new File(protonatedPdb.getAbsolutePath()+".fort101");
@@ -233,7 +233,7 @@ public class ElectrostaticPotentialCalculator implements Callable<Object>{
 		int exitCode = -1;
 
 		try{
-			exitCode = Utils.callWithTimeout(cmdArray, 5L);
+			exitCode = Utils.callWithTimeout(cmdArray, Config.TIMEOUT);
 		}catch(Exception e){
 			throw e;
 		}
@@ -244,7 +244,6 @@ public class ElectrostaticPotentialCalculator implements Callable<Object>{
 							protonatedPdb.getAbsolutePath(), exitCode)
 					, null);
 
-		Structure protStructure = PDBIO.read(protonatedPdb, 0);
 		Map<IResidue, double[]> potMap = new HashMap<>();
 
 		Map<Integer,IAtom> atomMap = protStructure.getAllAtomMap();
@@ -434,7 +433,7 @@ public class ElectrostaticPotentialCalculator implements Callable<Object>{
 
 		int exitCode = -1;
 		try {		
-			exitCode = Utils.callWithTimeout(cmdArray, null, 5L, new FileWriter(protonatedPdb));			
+			exitCode = Utils.callWithTimeout(cmdArray, null, Config.TIMEOUT, new FileWriter(protonatedPdb));			
 		} catch (Exception e) {			
 			throw e;
 		}

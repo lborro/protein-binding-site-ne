@@ -1,5 +1,7 @@
 package br.embrapa.cnptia.gpbc.plc.descriptors.protein;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,8 +18,9 @@ import br.embrapa.cnptia.gpbc.plc.structure.ProteinLigandComplex;
 
 public class ProteinNanoEnvironment {
 
-	private ProteinLigandComplex proteinLigandComplex;
-	private MaxContactsTable maxCon;
+	private final ProteinLigandComplex proteinLigandComplex;
+	private final MaxContactsTable maxCon;
+	private final String epDir;
 
 	private Descriptors<Contact> contacts;
 	private ContactsPerResidue conRes; 
@@ -26,16 +29,20 @@ public class ProteinNanoEnvironment {
 	private List<Double> descriptorsValues;
 	private List<IProteinDescriptor> descriptors;
 
-	public ProteinNanoEnvironment(ProteinLigandComplex complex, MaxContactsTable maxCon) throws Exception {
+	public ProteinNanoEnvironment(ProteinLigandComplex complex, MaxContactsTable maxCon, String epDir) throws Exception {
+		this.proteinLigandComplex = complex;
+		this.maxCon = maxCon;
+		this.epDir = epDir;
+		
+		if(epDir == null || !(new File(epDir).exists()))
+			throw new FileNotFoundException("EP dir does not exist: " + epDir);
+
 		if(complex == null) 
 			throw new NullPointerException("ProteinLigandComplex can not be null!");
 
 		if(maxCon == null) 
 			throw new NullPointerException("MaxContactsTable can not be null!");
-
-		this.proteinLigandComplex = complex;
-		this.maxCon = maxCon;
-
+		
 		descriptorsNames  = new ArrayList<>();
 		descriptorsValues = new ArrayList<>();
 		descriptors = new ArrayList<>();
@@ -67,6 +74,7 @@ public class ProteinNanoEnvironment {
 		descriptors.add(new DensitySponge(proteinLigandComplex.getProtein()));
 		descriptors.add(new EnergyDensity(proteinLigandComplex.getProtein(), conRes));
 		descriptors.add(new UnusedContacts(proteinLigandComplex.getProtein(), conRes, maxCon));
+		descriptors.add(new ElectrostaticPotential(proteinLigandComplex.getProtein(), epDir));
 
 		Curvature curvature = new Curvature(
 				proteinLigandComplex.getProtein(),

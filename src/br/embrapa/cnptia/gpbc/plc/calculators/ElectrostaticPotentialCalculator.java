@@ -26,6 +26,7 @@ import br.embrapa.cnptia.cbi.sdl.core.PDBIO;
 import br.embrapa.cnptia.cbi.sdl.core.SSBond;
 import br.embrapa.cnptia.cbi.sdl.core.Structure;
 import br.embrapa.cnptia.cbi.sdl.utils.Utils;
+import br.embrapa.cnptia.gpbc.plc.structure.ProteinLigandComplex;
 
 public class ElectrostaticPotentialCalculator implements Callable<Object>{
 
@@ -83,13 +84,22 @@ public class ElectrostaticPotentialCalculator implements Callable<Object>{
 
 	private final String outDir;
 
-	private final Structure structure;
+	private final ProteinLigandComplex plc;
 
 
-	public ElectrostaticPotentialCalculator(File pdbFile, String delphiPath, String reducePath, String parseRadiiFilePath, String parseChargesFilePath, 
-			String dictionaryPath, String tmpDir, String outDir) throws Exception {
+	public ElectrostaticPotentialCalculator(
+			File pdbFile, 
+			File mol2File, 
+			String delphiPath, 
+			String reducePath, 
+			String parseRadiiFilePath, 
+			String parseChargesFilePath, 
+			String dictionaryPath, 
+			String tmpDir, 
+			String outDir) throws Exception 
+	{
 
-		this.structure = PDBIO.read(pdbFile, 0);
+		this.plc = new ProteinLigandComplex(pdbFile, mol2File, 12.0);
 		this.delphiPath = delphiPath;
 		this.reducePath = reducePath;
 		this.reduceDictionary = dictionaryPath;
@@ -123,14 +133,14 @@ public class ElectrostaticPotentialCalculator implements Callable<Object>{
 			throw new FileNotFoundException("Could not create temporary working directory: " + temporaryDir.getAbsolutePath());
 		}
 
-		File pdb = new File(structure.getPdbFilename());
+		File pdb = new File(plc.getProtein().getStructure().getPdbFilename());
 		String pdbCode = pdb.getName().substring(0,pdb.getName().lastIndexOf('.'));
 
 		try{
 			File cleanPdb = new File(temporaryDir + File.separator + pdbCode + ".pdb");
 			BufferedWriter bw = new BufferedWriter(new FileWriter(cleanPdb));
 
-			for(Chain chain : structure) {
+			for(Chain chain : plc.getLigandNeighborChains()) {
 				for(IResidue residue : chain) {
 					if(Utils.isAminoAcid(residue.getName())){
 						for(IAtom atom : residue) {
@@ -143,7 +153,7 @@ public class ElectrostaticPotentialCalculator implements Callable<Object>{
 			bw.close();
 
 			File protonatedPdb = addHydrogens(cleanPdb, temporaryDir);
-			preparePDB(structure, protonatedPdb);
+			preparePDB(plc.getProtein().getStructure(), protonatedPdb);
 			generateAEP(protonatedPdb);
 			Map<IResidue, double[]> potMap = generateSEP(protonatedPdb);
 

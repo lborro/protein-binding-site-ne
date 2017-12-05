@@ -2,6 +2,7 @@ package br.embrapa.cnptia.gpbc.plc.calculators;
 import java.io.File;
 import java.util.concurrent.Callable;
 
+import br.embrapa.cnptia.gpbc.plc.config.Config;
 import br.embrapa.cnptia.gpbc.plc.data.MaxContactsTable;
 import br.embrapa.cnptia.gpbc.plc.descriptors.protein.ProteinNanoEnvironment;
 import br.embrapa.cnptia.gpbc.plc.structure.ProteinLigandComplex;
@@ -34,7 +35,7 @@ public class NanoEnvironmentCalculator implements Callable<ProteinNanoEnvironmen
 	@Override
 	public ProteinNanoEnvironment call() throws Exception {
 		try{
-			ProteinLigandComplex complex = new ProteinLigandComplex(protein, ligand, 12);
+			ProteinLigandComplex complex = new ProteinLigandComplex(protein, ligand, Config.NANO_ENVIRONMENT_MAX_CUTOFF);
 			ProteinNanoEnvironment nano = new ProteinNanoEnvironment(complex, maxCon, epDir);
 			nano.calculate(dist);
 			return nano;

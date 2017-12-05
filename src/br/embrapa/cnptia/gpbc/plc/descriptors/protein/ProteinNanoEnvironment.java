@@ -80,7 +80,7 @@ public class ProteinNanoEnvironment {
 				proteinLigandComplex.getProtein(),
 				Config.SURFRACE_PATH, 
 				Config.SURFRACE_RADII_PATH, 
-				1, 1.4,"tmp");
+				1, 1.4, Config.TMP_DIR);
 
 		descriptors.add(curvature);
 
@@ -90,7 +90,7 @@ public class ProteinNanoEnvironment {
 				Config.NACCESS_PATH, 
 				Config.NACCESS_RADII_PATH,
 				1.4, 
-				"tmp"
+				Config.TMP_DIR
 				);
 		descriptors.add(sasa);
 

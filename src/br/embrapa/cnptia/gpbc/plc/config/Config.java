@@ -22,4 +22,9 @@ public class Config {
 	//Directory for temporary files
 	public static final String TMP_DIR = "tmp";
 
+	//Time-out for running external programs (Minutes)
+	public static final int TIMEOUT = 15; 
+
+	//Cutoff for defining the binding-site nano-environment
+	public static final double NANO_ENVIRONMENT_MAX_CUTOFF = 12.0;
 }

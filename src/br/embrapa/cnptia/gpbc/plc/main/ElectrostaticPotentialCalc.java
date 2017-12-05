@@ -20,27 +20,38 @@ public class ElectrostaticPotentialCalc {
 
 		//List of protein structures (PDB files)
 		BufferedReader br = new BufferedReader(new FileReader(args[0]));
-		//directory where the PDB files are stored
+		//directory where PDB files are stored
 		String proteinDir = args[1];
-		//directory where the EP file will be stored
-		String outDir = args[2]; 
+		//directory where mol2  file will be stored
+		String ligandDir  = args[2];
+		//directory where EP file will be stored
+		String outDir     = args[3]; 
 
 		String line;
 		while ((line = br.readLine()) != null) {
-			File pdbFile = new File(proteinDir +  File.separator + line.trim());
-			Callable<Object> callable = new ElectrostaticPotentialCalculator(
-					pdbFile, 
-					Config.DELPHI_PATH, 
-					Config.REDUCE_PATH, 
-					Config.PARSE_RADII_PATH, 
-					Config.PARSE_CHARGES_PATH, 
-					Config.REDUCE_DIC_PATH, 
-					Config.TMP_DIR, 
-					outDir);
-			
-			pool.submit(callable);
+			String[] tk = line.split("\t");
+			File pdbFile = null, mol2File = null;
+			try{
+				pdbFile  = new File(proteinDir +  File.separator + tk[0].trim());
+				mol2File = new File(ligandDir  +  File.separator + tk[1].trim());
 
+				Callable<Object> callable = new ElectrostaticPotentialCalculator(
+						pdbFile,
+						mol2File,
+						Config.DELPHI_PATH, 
+						Config.REDUCE_PATH, 
+						Config.PARSE_RADII_PATH, 
+						Config.PARSE_CHARGES_PATH, 
+						Config.REDUCE_DIC_PATH, 
+						Config.TMP_DIR, 
+						outDir);
+
+				pool.submit(callable);
+			} catch(Exception e) {
+				System.out.println("Error calculating the surface electrostatic potential for the protein-ligand complex: " + line);
+			}
 		}
+
 		br.close();
 		pool.shutdown();
 		while (!pool.awaitTermination(60, TimeUnit.SECONDS)) {}
